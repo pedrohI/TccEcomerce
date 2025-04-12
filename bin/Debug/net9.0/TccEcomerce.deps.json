@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "TccEcomerce/1.0.0": {
+        "runtime": {
+          "TccEcomerce.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TccEcomerce/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
