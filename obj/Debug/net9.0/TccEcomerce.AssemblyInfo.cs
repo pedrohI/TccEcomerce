@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TccEcomerce")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d04b8f484ccd2ccea2ebdf4a4fff5a5beee5a956")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47a5ee7c1daae35712616aefd9f2892b79d397dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("TccEcomerce")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TccEcomerce")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
