@@ -1,3 +1,4 @@
+using TccEcomerce.Models;
 public class ItemPedido {
     public int Id { get; set; }
     public int PedidoId { get; set; }

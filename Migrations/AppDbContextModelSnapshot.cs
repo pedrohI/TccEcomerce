@@ -50,7 +50,7 @@ namespace TccEcomerce.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecoUnitario")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("ProdutoId")
                         .HasColumnType("int");
@@ -82,7 +82,7 @@ namespace TccEcomerce.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 

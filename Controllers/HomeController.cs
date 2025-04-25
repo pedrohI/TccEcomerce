@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TccEcomerce.Models;
+using TccEcomerce.Data;
 
 namespace TccEcomerce.Controllers;
 
@@ -27,5 +28,17 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+}
+public class ProdutosController : Controller {
+    private readonly AppDbContext _context;
+
+    public ProdutosController(AppDbContext context) {
+        _context = context;
+    }
+
+    public IActionResult Index() {
+        var produtos = _context.Produtos.ToList(); // Obtém todos os produtos do banco de dados
+        return View(produtos); // Retorna a view com a lista de produtos
     }
 }
