@@ -23,6 +23,20 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Produtos()
+    {
+        return View();
+    }
+
+     public IActionResult MeusPedidos()
+    {
+        return View();
+    }
+
+     public IActionResult MeusDados()
+    {
+        return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
@@ -30,14 +44,17 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
-public class ProdutosController : Controller {
+public class ProdutosController : Controller
+{
     private readonly AppDbContext _context;
 
-    public ProdutosController(AppDbContext context) {
+    public ProdutosController(AppDbContext context)
+    {
         _context = context;
     }
 
-    public IActionResult Index() {
+    public IActionResult Index()
+    {
         var produtos = _context.Produtos.ToList(); // Obtém todos os produtos do banco de dados
         return View(produtos); // Retorna a view com a lista de produtos
     }
