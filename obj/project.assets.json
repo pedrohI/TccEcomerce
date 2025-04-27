@@ -4718,11 +4718,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pedro\\Desktop\\TccEcomerce\\TccEcomerce\\TccEcomerce.csproj",
+      "projectUniqueName": "C:\\Users\\Pedro\\Desktop\\TccEcomerce\\TccEcomerce.csproj",
       "projectName": "TccEcomerce",
-      "projectPath": "C:\\Users\\Pedro\\Desktop\\TccEcomerce\\TccEcomerce\\TccEcomerce.csproj",
+      "projectPath": "C:\\Users\\Pedro\\Desktop\\TccEcomerce\\TccEcomerce.csproj",
       "packagesPath": "C:\\Users\\Pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pedro\\Desktop\\TccEcomerce\\TccEcomerce\\obj\\",
+      "outputPath": "C:\\Users\\Pedro\\Desktop\\TccEcomerce\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
