@@ -1,30 +1,28 @@
-<form class="row g-3" style="background-color: white; border-radius: 15px;">
-    <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Nome</label>
-        <input type="text" class="form-control">
-    </div>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
 
-    <div class="col-md-6">
-        <label for="inputCity" class="form-label">Telefone</label>
-        <input type="tel" class="form-control" id="inputCity">
-    </div>
-    
-    <div class="col-12">
-        <label for="inputAddress2" class="form-label">Email</label>
-        <input type="email" class="form-control">
-    </div>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Olá, Crie sua conta<h2>
+        </div>
 
-    <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="inputPassword4">
-    </div>
+        <div class="right-panel">
+            <h4><span class="highlight">Criar conta</span></h4>
+            <form>
+                <input type="text" placeholder="Full Name" required />
+                <input type="tel" placeholder="Phone Number" required />
+                <input type="email" placeholder="Email Address" required />
+                <input type="password" placeholder="Password" required />
+                <input type="password" placeholder="Confirm Password" required />
 
-    <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Confirme a senha</label>
-    <input type="password" class="form-control" id="inputPassword4">
+                <button type="submit">Nova conta</button>
+
+                <div class="login-link">
+                    <p>Ja possui uma conta? <a asp-controller="forms" asp-action="Login">Login</a></p>
+                </div>
+            </form>
+        </div>
     </div>
-    
-    <div class="col-12  text-end" >
-        <button type="submit" class="btn btn-outline-primary">Novo usuário</button>
-    </div>
-</form>
+</body>

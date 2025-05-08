@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f3d57, #1e90ff);
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(135deg, #003366, #0077b6, #00b4d8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            position: relative;
+            text-align: center;
+        }
+
+        .left-panel h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .left-panel p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .left-panel footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h3 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .right-panel h4 {
+            margin-top: 5px;
+            font-size: 20px;
+            color: #0077b6;
+        }
+
+        .right-panel p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        form input[type="text"],
+        form input[type="tel"],
+        form input[type="email"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        form input:focus {
+            border-color: #0077b6;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            color: white;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .create-account {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .create-account a {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-content"></div>
+    @RenderBody()
+    </div>
+</body>
+
+</html>
