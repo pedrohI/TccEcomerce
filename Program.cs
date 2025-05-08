@@ -4,42 +4,75 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Add database context
+
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Connection String: {connectionString}");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSqlConnection"))
-        .EnableSensitiveDataLogging()
-           .LogTo(Console.WriteLine));
+    options.UseSqlServer(connectionString));
+
+
+
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
+      options.SignIn.RequireConfirmedAccount = false;
+})
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
+
+// Configure Identity options
+builder.Services.ConfigureApplicationCookie(opts =>
+{
+    opts.LoginPath = "/Account/Login";
+    opts.LogoutPath = "/Account/Logout";
+    opts.AccessDeniedPath = "/Account/AccessDenied";
+});
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+
+
+using (var scope = app.Services.CreateScope())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    var services = scope.ServiceProvider;
+    try
+    {
+        await IdentitySeeder.SeedRolesAndAdmin(services); // Seed the database with initial data
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred with identity: {ex.Message}");
+    }
 }
 
-app.UseHttpsRedirection();
+
+builder.Logging.AddConsole();
+
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 app.MapStaticAssets();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
 
 
 app.Run();

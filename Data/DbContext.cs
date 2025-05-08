@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using TccEcomerce.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace TccEcomerce.Data 
+namespace TccEcomerce.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -13,7 +14,7 @@ namespace TccEcomerce.Data
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<ItemPedido> ItensPedido { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<ApplicationUser> Usuarios { get; set; }
     
 
     // metodo Oncreating para corrigir tipo especificado nas classes ao usar migração para sincronizar com o banco de dados
