@@ -1,0 +1,33 @@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h2>Seja bem vindo</h2>
+      <p>Entre na sua conta ou cadastre-se</p>
+    </div>
+
+    <div class="right-panel">
+      <h3>Olá</h3>
+      <p><strong>Acesse </strong>sua conta</p>
+
+      <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Senha" required>
+
+        <div class="options">
+          <label><input type="checkbox"> Lembre-se</label>
+          <a href="#">Esqueceu sua senha?</a>
+        </div>
+
+        <button type="submit">Entar</button>
+
+        <div class="create-account">
+          <a sp-controller="forms"
+                  asp-action="CadastroUsuario">Criar conta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
