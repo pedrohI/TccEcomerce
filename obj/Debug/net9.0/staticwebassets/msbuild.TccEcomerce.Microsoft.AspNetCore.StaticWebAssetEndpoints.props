@@ -756,17 +756,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1117"},{"Name":"Content-Type","Value":"text/plain"},{"Name":"ETag","Value":"\u0022hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 27 Apr 2025 18:31:21 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/TccEcomerce/TccEcomerce.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TccEcomerce.nmno0qy47s.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/TccEcomerce/TccEcomerce.1rpl78vi9h.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TccEcomerce.1rpl78vi9h.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-YaoZ7zyKNUr6Qejt/IaZU/SnHE44tf0oEQzGtL56kU8="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022YaoZ7zyKNUr6Qejt/IaZU/SnHE44tf0oEQzGtL56kU8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 27 Apr 2025 18:31:21 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"1rpl78vi9h"},{"Name":"integrity","Value":"sha256-Y5PXln4fDd3hihmNKuVE5t09RthjdgxDHMR481DSOUA="},{"Name":"label","Value":"_content/TccEcomerce/TccEcomerce.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Y5PXln4fDd3hihmNKuVE5t09RthjdgxDHMR481DSOUA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 01:30:51 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/TccEcomerce/TccEcomerce.nmno0qy47s.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TccEcomerce.nmno0qy47s.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/TccEcomerce/TccEcomerce.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TccEcomerce.1rpl78vi9h.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nmno0qy47s"},{"Name":"integrity","Value":"sha256-YaoZ7zyKNUr6Qejt/IaZU/SnHE44tf0oEQzGtL56kU8="},{"Name":"label","Value":"_content/TccEcomerce/TccEcomerce.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022YaoZ7zyKNUr6Qejt/IaZU/SnHE44tf0oEQzGtL56kU8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 27 Apr 2025 18:31:21 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Y5PXln4fDd3hihmNKuVE5t09RthjdgxDHMR481DSOUA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1135"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Y5PXln4fDd3hihmNKuVE5t09RthjdgxDHMR481DSOUA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 08 May 2025 01:30:51 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

@@ -49,8 +49,6 @@ c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\ff5r22z0go-x0q3zq
 c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\b7ebynb961-ttgo8qnofa.gz
 c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\s0bkst8nx8-87fc7y1x7t.gz
 c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\mmmuhwsd09-mlv21k5csn.gz
-c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\t6lzjysbzv-nmno0qy47s.gz
-c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\ozsffdl82z-nmno0qy47s.gz
 c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\staticwebassets.build.json
 c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\staticwebassets.development.json
 c:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -641,3 +639,5 @@ C:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\a3ygkwa5zy-2z0ns9
 C:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
 C:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
 C:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
+C:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\t6lzjysbzv-1rpl78vi9h.gz
+C:\Users\Pedro\Desktop\TccEcomerce\obj\Debug\net9.0\compressed\ozsffdl82z-1rpl78vi9h.gz
