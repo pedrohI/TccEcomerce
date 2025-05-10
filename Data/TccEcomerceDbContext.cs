@@ -4,21 +4,19 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TccEcomerce.Data
 {
-    public class AppDbContext : IdentityDbContext<Usuario>
+    public class TccEcomerceDbContext(DbContextOptions<TccEcomerceDbContext> options) : IdentityDbContext<Usuario>(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-        }
 
-        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Produto> Produtos { get; set; } = null!;
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<ItemPedido> ItensPedido { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-    
+        public IEnumerable<object> Produto { get; internal set; }
 
-    // metodo Oncreating para corrigir tipo especificado nas classes ao usar migração para sincronizar com o banco de dados
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        // metodo Oncreating para corrigir tipo especificado nas classes ao usar migração para sincronizar com o banco de dados
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     base.OnModelCreating(modelBuilder);
 

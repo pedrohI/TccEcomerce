@@ -16,7 +16,7 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection String: {connectionString}");
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<TccEcomerceDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 
@@ -25,7 +25,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<Usuario, IdentityRole>(options => {
       options.SignIn.RequireConfirmedAccount = false;
 })
-.AddEntityFrameworkStores<AppDbContext>()
+.AddEntityFrameworkStores<TccEcomerceDbContext>()
 .AddDefaultTokenProviders();
 
 // Configure Identity options
