@@ -1,6 +1,25 @@
 @{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+Layout
+=
+
+"~/Views/Shared/_LayoutAdmin.cshtml"
+;
+
+ViewData
+[
+"Title"
+]
+
+=
+
+"Login"
+;
+
 }
+
+@model TccEcomerce.Models.LoginViewModel
+
 <body>
   <div class="container">
     <div class="left-panel">
@@ -12,22 +31,30 @@
       <h3>Olá</h3>
       <p><strong>Acesse </strong>sua conta</p>
 
-      <form>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Senha" required>
+      <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <input asp-for="Email" type="email" placeholder="Email" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <input asp-for="Password" type="password" placeholder="Senha" required>
+        <span asp-validation-for="Password" class="text-danger"></span>
 
         <div class="options">
-          <label><input type="checkbox"> Lembre-se</label>
-          <a href="#">Esqueceu sua senha?</a>
+          <label><input asp-for="RememberMe" type="checkbox"> Lembre-se</label>
+          <a asp-controller="Account" asp-action="ForgotPassword">Esqueceu sua senha?</a>
         </div>
 
-        <button type="submit">Entar</button>
+        <button type="submit">Entrar</button>
 
         <div class="create-account">
-          <a sp-controller="forms"
-                  asp-action="CadastroUsuario">Criar conta</a>
+          <a asp-controller="Account" asp-action="Register">Criar conta</a>
         </div>
       </form>
     </div>
   </div>
 </body>
+
+@section Scripts {
+  @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TccEcomerce.Models;
+using TccEcomerce.Data;
 
 namespace TccEcomerce.Controllers
 {
@@ -9,15 +10,20 @@ namespace TccEcomerce.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly AppDbContext _context;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login(string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -25,24 +31,24 @@ namespace TccEcomerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            
+
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                
+
                 if (result.Succeeded)
                 {
                     return RedirectToLocal(returnUrl);
                 }
-                
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
                 }
-                
+
                 if (result.IsLockedOut)
                 {
                     return RedirectToAction(nameof(Lockout));
@@ -59,7 +65,7 @@ namespace TccEcomerce.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register(string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -67,21 +73,34 @@ namespace TccEcomerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            
+
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
-                
+
                 if (result.Succeeded)
                 {
+                    // Aqui você pode criar também um registro na sua tabela Usuario
+                    // para manter compatibilidade com seu sistema existente
+                    var usuario = new Usuario
+                    {
+                        Email = model.Email,
+                        Nome = model.Nome,
+                        // Outras propriedades do seu modelo Usuario
+                        IdentityId = user.Id // Campo para relacionar com o IdentityUser
+                    };
+
+                    _context.Usuarios.Add(usuario);
+                    await _context.SaveChangesAsync();
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }
-                
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -97,7 +116,7 @@ namespace TccEcomerce.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -125,8 +144,9 @@ namespace TccEcomerce.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
+        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl)
         {
+            await _signInManager.GetTwoFactorAuthenticationUserAsync();
             // Implementação para autenticação de dois fatores
             return View();
         }

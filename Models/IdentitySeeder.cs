@@ -7,7 +7,7 @@ public static class IdentitySeeder
 {
     public static async Task SeedRolesAndAdmin(IServiceProvider serviceProvider)
     {
-        var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<Usuario>>();
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
         // Create roles
@@ -21,7 +21,7 @@ public static class IdentitySeeder
         }
 
         // Create default admin user
-        var adminEmail = new ApplicationUser
+        var adminEmail = new Usuario
         {
             UserName = "admin",
             Email = "admin@example.com",

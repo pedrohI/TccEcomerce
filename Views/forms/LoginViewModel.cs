@@ -6,13 +6,13 @@ namespace TccEcomerce.Models
     {
         [Required(ErrorMessage = "O campo Email é obrigatório")]
         [EmailAddress(ErrorMessage = "O formato do email é inválido")]
-        public string? Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O campo Senha é obrigatório")]
         [DataType(DataType.Password)]
-        public string? Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [Display(Name = "Lembrar-me")]
-        public bool? RememberMe { get; set; }
+        public bool RememberMe { get; set; } = false;
     }
 }

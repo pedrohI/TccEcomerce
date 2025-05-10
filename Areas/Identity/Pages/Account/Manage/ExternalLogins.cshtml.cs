@@ -16,14 +16,14 @@ namespace TccEcomerce.Areas.Identity.Pages.Account.Manage
 {
     public class ExternalLoginsModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IUserStore<ApplicationUser> _userStore;
+        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
+        private readonly IUserStore<Usuario> _userStore;
 
         public ExternalLoginsModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            IUserStore<ApplicationUser> userStore)
+            UserManager<Usuario> userManager,
+            SignInManager<Usuario> signInManager,
+            IUserStore<Usuario> userStore)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -69,7 +69,7 @@ namespace TccEcomerce.Areas.Identity.Pages.Account.Manage
                 .ToList();
 
             string passwordHash = null;
-            if (_userStore is IUserPasswordStore<ApplicationUser> userPasswordStore)
+            if (_userStore is IUserPasswordStore<Usuario> userPasswordStore)
             {
                 passwordHash = await userPasswordStore.GetPasswordHashAsync(user, HttpContext.RequestAborted);
             }

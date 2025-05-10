@@ -1,56 +1,61 @@
 @{
 
-    Layout 
-=
- 
-"~/Views/Shared/_LayoutAdmin.cshtml"
-;
+    Layout
+    =
+
+    "~/Views/Shared/_LayoutAdmin.cshtml"
+    ;
 
     ViewData
-[
-"Title"
-]
- 
-=
- 
-"Cadastro"
-;
+    [
+    "Title"
+    ]
+
+    =
+
+    "Cadastro"
+    ;
 
 }
 
+@model TccEcomerce.Models.RegisterViewModel
 
-@model RegisterViewModel
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Seja bem vindo</h2>
+            <p>Crie sua conta para acessar o sistema</p>
+        </div>
 
-<div class="container">
-    <div class="left-panel">
-        <h2>Seja bem vindo</h2>
-        <p>Crie sua conta para acessar o sistema</p>
+        <div class="right-panel">
+            <h3>Cadastro</h3>
+            <p><strong>Crie </strong>sua conta</p>
+
+            <form asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]"
+                method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <input asp-for="Nome" type="text" placeholder="Nome completo" required>
+                <span asp-validation-for="Nome" class="text-danger"></span>
+
+                <input asp-for="Email" type="email" placeholder="Email" required>
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+                <input asp-for="Password" type="password" placeholder="Senha" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+                <input asp-for="ConfirmPassword" type="password" placeholder="Confirmar Senha" required>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                <button type="submit">Cadastrar</button>
+
+                <div class="login-link">
+                    Já possui uma conta? <a asp-controller="Account" asp-action="Login">Fazer login</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="right-panel">
-        <h3>Cadastro</h3>
-        <p><strong>Crie </strong>sua conta</p>
-
-        <form asp-controller="Account" asp-action="Register" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            
-            <input asp-for="Email" type="email" placeholder="Email" required>
-            <span asp-validation-for="Email" class="text-danger"></span>
-            
-            <input asp-for="Password" type="password" placeholder="Senha" required>
-            <span asp-validation-for="Password" class="text-danger"></span>
-            
-            <input asp-for="ConfirmPassword" type="password" placeholder="Confirmar Senha" required>
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-
-            <button type="submit">Cadastrar</button>
-
-            <div class="login-link">
-                Já possui uma conta? <a asp-controller="Account" asp-action="Login">Fazer login</a>
-            </div>
-        </form>
-    </div>
-</div>
+</body>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
