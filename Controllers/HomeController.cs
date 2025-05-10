@@ -26,7 +26,7 @@ namespace TccEcomerce.Controllers
         public async Task<IActionResult> Index()
         {
             // Obtém os produtos ativos ordenados por mais recentes
-            var produtos = await _context.Produtos
+            var produtos = await _context.Produto
                 .Where(p => p.Disponivel)
                 .Include(p => p.Categoria) // Inclui a categoria do produto
                 .OrderByDescending(p => p.Id)
