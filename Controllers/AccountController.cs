@@ -10,12 +10,12 @@ namespace TccEcomerce.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly AppDbContext _context;
+        private readonly TccEcomerceDbContext _context;
 
         public AccountController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            AppDbContext context)
+            TccEcomerceDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
