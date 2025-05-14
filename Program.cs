@@ -1,10 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using TccEcomerce.Data;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Identity;
+using TccEcomerce.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,43 +20,58 @@ builder.Services.AddDbContext<TccEcomerceDbContext>(options =>
 
 
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<Usuario, IdentityRole>(options =>
+{
+    // Password settings
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+
+    // User settings
+    options.SignIn.RequireConfirmedEmail = true;
+
+    // Lockout settings
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+
+})
 .AddEntityFrameworkStores<TccEcomerceDbContext>()
 .AddDefaultTokenProviders();
 
-// Configure Identity options
-builder.Services.ConfigureApplicationCookie(opts =>
+// Configure Identity cookie
+builder.Services.ConfigureApplicationCookie(options =>
 {
-    opts.LoginPath = "/Account/Login";
-    opts.LogoutPath = "/Account/Logout";
-    opts.AccessDeniedPath = "/Account/AccessDenied";
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+    options.SlidingExpiration = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 });
 
-
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-
-
 var app = builder.Build();
 
-
-
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment())
 {
-    var services = scope.ServiceProvider;
-    try
-    {
-        await IdentitySeeder.SeedRolesAndAdmin(services); // Seed the database with initial data
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"An error occurred with identity: {ex.Message}");
-    }
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
 
-
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
 builder.Logging.AddConsole();
 
 app.UseStaticFiles();
@@ -67,13 +80,54 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-app.MapDefaultControllerRoute();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-
-app.MapStaticAssets();
-
 
 
 app.Run();
+
+async Task CreateRolesAndAdminUser(IServiceProvider serviceProvider)
+{
+    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    // Cria os papéis "Admin" e "User" se não existirem
+    string[] roleNames = { "Admin", "User" };
+    foreach (var roleName in roleNames)
+    {
+        var roleExist = await roleManager.RoleExistsAsync(roleName);
+        if (!roleExist)
+        {
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+
+    // Cria o usuário admin se não existir
+    var adminEmail = builder.Configuration["AdminUser:Email"];
+    var adminPassword = builder.Configuration["AdminUser:Password"];
+
+    if (!string.IsNullOrEmpty(adminEmail) && !string.IsNullOrEmpty(adminPassword))
+    {
+        var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
+        if (adminUser == null)
+        {
+            var admin = new Usuario
+            {
+                UserName = adminEmail,
+                Email = adminEmail,
+                EmailConfirmed = true // Admin já tem email confirmado
+            };
+
+            var result = await userManager.CreateAsync(admin, adminPassword);
+
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(admin, "Admin");
+            }
+        }
+    }
+}
 
