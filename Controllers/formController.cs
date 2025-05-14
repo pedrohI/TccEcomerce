@@ -5,7 +5,7 @@ using TccEcomerce.Data;
 
 namespace TccEcomerce.Controllers;
 
-public class formController : Controller
+public class FormController : Controller
 {
     public IActionResult CadastroUsuario()
     {

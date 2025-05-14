@@ -22,9 +22,7 @@ builder.Services.AddDbContext<TccEcomerceDbContext>(options =>
 
 
 
-builder.Services.AddIdentity<Usuario, IdentityRole>(options => {
-      options.SignIn.RequireConfirmedAccount = false;
-})
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 .AddEntityFrameworkStores<TccEcomerceDbContext>()
 .AddDefaultTokenProviders();
 
@@ -35,6 +33,8 @@ builder.Services.ConfigureApplicationCookie(opts =>
     opts.LogoutPath = "/Account/Logout";
     opts.AccessDeniedPath = "/Account/AccessDenied";
 });
+
+
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
