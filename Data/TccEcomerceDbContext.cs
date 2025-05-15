@@ -25,7 +25,10 @@ namespace TccEcomerce.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Usuario>().ToTable("Usuarios");
+            modelBuilder.Entity<Usuario>(entity =>
+            {
+                entity.ToTable("Usuarios");
+            });
 
             modelBuilder.Entity<ItemPedido>(entity =>
             {
@@ -38,6 +41,8 @@ namespace TccEcomerce.Data
                 entity.Property(e => e.ValorTotal)
                       .HasColumnType("decimal(18,4)"); // Exemplo de maior precisão
             });
+
+            modelBuilder.Entity<Categoria>().ToTable("Categorias");
         }
 
     }

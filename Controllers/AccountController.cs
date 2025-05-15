@@ -15,20 +15,17 @@ namespace TccEcomerce.Controllers
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
         private readonly ILogger<AccountController> _logger;
-        private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(
             UserManager<Usuario> userManager,
             SignInManager<Usuario> signInManager,
             ILogger<AccountController> logger,
-            IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
             _roleManager = roleManager;
         }
 
@@ -62,20 +59,9 @@ namespace TccEcomerce.Controllers
                     // Adiciona o usuário ao papel de "User" (usuário comum)
                     await _userManager.AddToRoleAsync(user, "User");
 
-                    // Gera um token para confirmação de email
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.Action(
-                        "ConfirmEmail",
-                        "Account",
-                        new { userId = user.Id, code = code },
-                        protocol: HttpContext.Request.Scheme);
+                    
 
-                    // Envia o email de confirmação
-                    await _emailSender.SendEmailAsync(model.Email, "Confirme sua conta",
-                        $"Por favor, confirme sua conta clicando neste link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>confirmar conta</a>");
-
-                    // Se não quiser exigir confirmação de email para o primeiro login, pode fazer login direto
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                
                     
                     if (returnUrl != null)
                     {
