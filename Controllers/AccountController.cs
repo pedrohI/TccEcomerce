@@ -43,8 +43,8 @@ namespace TccEcomerce.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new Usuario { UserName = model.Email, Email = model.Email };
-                
+                var user = new Usuario { UserName = model.Email, Email = model.Email, Nome = model.Nome };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -58,11 +58,10 @@ namespace TccEcomerce.Controllers
 
                     // Adiciona o usuário ao papel de "User" (usuário comum)
                     await _userManager.AddToRoleAsync(user, "User");
-
                     
+                    user.EmailConfirmed = true;
+                    await _userManager.UpdateAsync(user);
 
-                
-                    
                     if (returnUrl != null)
                     {
                         return LocalRedirect(returnUrl);
@@ -72,7 +71,7 @@ namespace TccEcomerce.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -82,6 +81,7 @@ namespace TccEcomerce.Controllers
             // Se chegamos até aqui, algo falhou, reexibir o formulário
             return View(model);
         }
+        
 
         [HttpGet]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -108,6 +108,7 @@ namespace TccEcomerce.Controllers
                 ViewBag.ErrorMessage = "Não foi possível confirmar seu email. Por favor, tente novamente.";
                 return View("Error");
             }
+
         }
 
         [HttpGet]
@@ -144,6 +145,7 @@ namespace TccEcomerce.Controllers
                     ModelState.AddModelError(string.Empty, "Tentativa de login inválida.");
                     return View(model);
                 }
+
             }
 
             // Se chegamos até aqui, algo falhou, reexibir o formulário
