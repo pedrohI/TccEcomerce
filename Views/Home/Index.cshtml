@@ -38,9 +38,9 @@ else
                 <li>@Produto.Descricao</li>
                 <li class="text-danger">Quantidade disponível: @Produto.Estoque unidades</li>
               </ul>
-              <a asp-controller="Compra" asp-action="AdicionarCarrinho" asp-route-id="@Produto.Id"
+              <a asp-controller="Produto" asp-action="Checkout" asp-route-id="@Produto.Id"
                 class="w-50 btn btn-lg btn-outline-primary @(User?.Identity?.IsAuthenticated == true ? "" : "disabled")">Comprar</a>
-              <a asp-controller="Produto" asp-action="Detalhes" asp-route-id="@Produto.Id"
+              <a asp-controller="Produto" asp-action="VerProduto" asp-route-id="@Produto.Id"
                 class="w-49 btn btn-lg btn-outline-primary">Ver produto</a>
             </div>
           </div>
