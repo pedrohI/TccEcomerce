@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 
 
-var connectionString = builder.Configuration.GetConnectionString("Teste");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection String: {connectionString}");
 
 builder.Services.AddDbContext<TccEcomerceDbContext>(options =>
@@ -35,6 +35,7 @@ builder.Services.AddIdentity<Usuario, IdentityRole>(options =>
     options.Lockout.AllowedForNewUsers = true;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
+
 
 })
 .AddEntityFrameworkStores<TccEcomerceDbContext>()

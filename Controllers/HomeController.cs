@@ -39,7 +39,7 @@ namespace TccEcomerce.Controllers
             return View();
         }
 
-        public IActionResult Produtos()
+        public IActionResult Produto()
         {
             return View();
         }

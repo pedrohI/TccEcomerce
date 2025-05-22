@@ -1,0 +1,32 @@
+@model IEnumerable<TccEcomerce.Models.Produto>
+
+<h1>Produtos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Produto in Model)
+        {
+            <tr>
+                <td>@Produto.Id</td>
+                <td>@Produto.Nome</td>
+                <td>@Produto.Preco</td>
+                <td>@Produto.Estoque</td>
+                <td>
+                    <a asp-action="EditProduct" asp-route-id="@Produto.Id">Editar</a> |
+                    <a asp-action="DeleteProduct" asp-route-id="@Produto.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddProduct">Adicionar Novo Produto</a>
