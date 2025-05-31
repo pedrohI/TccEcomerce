@@ -39,8 +39,6 @@
                 </svg>
               </a>
               <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a asp-controller="Home" asp-action="Produtos" class="nav-link px-2 text-dark">Produtos</a></li>
-                <li><a asp-controller="Home" asp-action="MeusPedidos" class="nav-link px-2 text-dark">Meus pedidos</a>
                 </li>
                 <li><a asp-controller="Home" asp-action="MeusDados" class="nav-link px-2 text-dark">Meus dados</a></li>
               </ul>
@@ -70,6 +68,8 @@
       <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
       <script src="~/js/site.js" asp-append-version="true"></script>
       @await RenderSectionAsync("Scripts", required: false)
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
