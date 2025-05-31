@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("Localhost");
 Console.WriteLine($"Connection String: {connectionString}");
 
 builder.Services.AddDbContext<TccEcomerceDbContext>(options =>
